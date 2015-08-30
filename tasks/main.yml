@@ -1,10 +1,14 @@
 - name: loading vars for host
   include_vars: "maesto_{{ansible_hostname }}"
 
+#- debug: var="{{ item }}"
+#  with_items: "{{ maesto_ssh_keys }}"
+
+
 - name: adding user before adding key
   user: name="{{ item.user }}"
-  with_dict: maesto_ssh_keys
+  with_items: "{{ maesto_ssh_keys }}"
 
 - name: addin ssh keys for host
   authorized_key: exclusive=yes user="{{ item.user }}" key="{{ item.key }}"
-  with_dict: maesto_ssh_keys
+  with_items: "{{ maesto_ssh_keys }}"

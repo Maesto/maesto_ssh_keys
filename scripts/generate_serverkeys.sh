@@ -63,7 +63,7 @@ find "$servers" -type f -print0 | while read -d '' -r serverentry; do
 		itemcontent=$(cat "$tmp/$item")
 		printf -v keycontent "%s \\\n %s" "$keycontent" "$itemcontent"
 	done < "$serverentry"
-	printf "  - { user: '%s', key: \"%s\"}\n" "$username" "$keycontent" >> "$vardir/maesto_$servername"
+	printf "  - { user: '%s',\n key: \"%s\"}\n" "$username" "$keycontent" >> "$vardir/maesto_$servername"
 	
 	
 done
