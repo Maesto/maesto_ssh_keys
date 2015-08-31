@@ -14,6 +14,17 @@ Usage:
 
 You can generate all server keys by running scripts/generate_serverkeys.sh . After this use this like every other role. If the serverkey {{ ansible_hostname }} exists (define it inside the data directory) it will be populated. You may want to populate the data directory via your own git and run the generate_serverkeys.sh via cron to update the keys from time to time.
 
+Example:
+========
+
+```
+---
+- hosts: all
+  vars:
+  tasks:
+  roles:
+    - maesto_ssh_keys
+```
 
 Setup:
 ======
