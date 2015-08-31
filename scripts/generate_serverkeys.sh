@@ -57,7 +57,7 @@ find "$servers" -type f -print0 | while read -d '' -r serverentry; do
 	if [ $servername == $username ] ; then
 		username="root"
 	fi
-
+	keycontent=""
 	while read item; do
 		#contating the key from tmpdir to file/keys/servername
 		itemcontent=$(cat "$tmp/$item")
