@@ -69,4 +69,4 @@ find "$servers" -type f -print0 | while read -d '' -r serverentry; do
 done
 
 #cleaning up after ourselfs
-#rm -rf "$tmp"
+rm -rf "$tmp"
