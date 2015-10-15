@@ -1,5 +1,5 @@
 - name: loading vars for host
-  include_vars: "maesto_{{ansible_hostname }}"
+  include_vars: "maesto_{{ inventory_hostname }}"
 
 - name: adding user before adding key
   user: name="{{ item.user }}"
