@@ -17,7 +17,7 @@ vardir="$base/vars"
 tmp=$(mktemp -d)
 
 # find all group directorys
-find $groups -mindepth 1 -maxdepth 1 -type d -print0 | while read -d '' -r groupitem; do
+find "$groups" -mindepth 1 -maxdepth 1 -type d -print0 | while read -d '' -r groupitem; do
 
 	#save the groupname
 	groupname=${groupitem##*/}
@@ -27,7 +27,6 @@ find $groups -mindepth 1 -maxdepth 1 -type d -print0 | while read -d '' -r group
 		printf "%s\\\n" "$keycontents" >> "$tmp/$groupname" 
 	done
 done
-
 
 #copy all userkeys into our tmp dir
 cp "$keys/"* "$tmp"
@@ -41,7 +40,7 @@ find "$servers" -type f -print0 | while read -d '' -r serverentry; do
 	#save the servername
 	serversub=${serverentry##*/}
 	servername=${serversub##*@}
-	
+
 	printf "maesto_ssh_keys:\n" > "$vardir/maesto_$servername"
 
 done
@@ -54,7 +53,7 @@ find "$servers" -type f -print0 | while read -d '' -r serverentry; do
 	username=${serversub%%@*}
 
 	#default to root if no name given
-	if [ $servername == $username ] ; then
+	if [ $servername = $username ] ; then
 		username="root"
 	fi
 	keycontent=""
@@ -64,8 +63,7 @@ find "$servers" -type f -print0 | while read -d '' -r serverentry; do
 		printf -v keycontent "%s \\\n %s" "$keycontent" "$itemcontent"
 	done < "$serverentry"
 	printf "  - { user: '%s',\n key: \"%s\"}\n" "$username" "$keycontent" >> "$vardir/maesto_$servername"
-	
-	
+
 done
 
 #cleaning up after ourselfs
