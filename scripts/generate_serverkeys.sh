@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # generates all authorized_keys for the servers as defined in the data directory
 
@@ -53,7 +53,7 @@ find "$servers" -type f -print0 | while read -d '' -r serverentry; do
 	username=${serversub%%@*}
 
 	#default to root if no name given
-	if [ $servername = $username ] ; then
+	if [ $servername == $username ] ; then
 		username="root"
 	fi
 	keycontent=""

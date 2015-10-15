@@ -6,7 +6,7 @@ Manages ssh keys on your servers and ensures that only these keys are on your se
 Requirements
 ------------
 
-(GNU) coreutils, (GNU) findutils Simply not tested on non GNU userspace.
+(GNU) bash, (GNU) coreutils, (GNU) findutils Simply not tested on non GNU userspace.
 SetUp the data directory.
 
 Role Variables
